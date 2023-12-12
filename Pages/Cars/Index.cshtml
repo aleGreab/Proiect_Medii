@@ -1,0 +1,72 @@
+﻿@page
+@model Proiect_Mercedes.Pages.Cars.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Motor.MotorType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Transmission.TransmissionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].State.StateType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].ManufacturingYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Feature)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Car) {
+        <tr>
+            <td>
+              <img src="@item.Photo" alt="Car Image" style="width: 300px; height: 150px;">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motor.MotorType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Transmission.TransmissionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State.StateType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufacturingYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feature)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
