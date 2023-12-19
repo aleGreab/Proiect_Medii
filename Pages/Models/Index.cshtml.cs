@@ -19,7 +19,7 @@ namespace Proiect_Mercedes.Pages.Models
             _context = context;
         }
 
-        public IList<Model> Model { get;set; } = default!;
+        public IList<Model_Car> Model { get;set; } = default!;
 
         public async Task OnGetAsync()
         {

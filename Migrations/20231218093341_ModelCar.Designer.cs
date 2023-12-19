@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proiect_Mercedes.Data;
 
@@ -11,9 +12,11 @@ using Proiect_Mercedes.Data;
 namespace Proiect_Mercedes.Migrations
 {
     [DbContext(typeof(Proiect_MercedesContext))]
-    partial class Proiect_MercedesContextModelSnapshot : ModelSnapshot
+    [Migration("20231218093341_ModelCar")]
+    partial class ModelCar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

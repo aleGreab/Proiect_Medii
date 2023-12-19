@@ -22,7 +22,7 @@ namespace Proiect_Mercedes.Pages.Cars
 
         public IActionResult OnGet()
         {
-            ViewData["CarModelID"] = new SelectList(_context.Set<Model>(), "ID", "ModelName");
+            ViewData["CarModelID"] = new SelectList(_context.Set<Model_Car>(), "ID", "ModelName");
             ViewData["CarMotorID"] = new SelectList(_context.Set<Motorization>(), "ID", "MotorType");
             ViewData["CarTransID"] = new SelectList(_context.Set<Transmission>(), "ID", "TransmissionType");
             ViewData["CarStateID"] = new SelectList(_context.Set<State>(), "ID", "StateType");

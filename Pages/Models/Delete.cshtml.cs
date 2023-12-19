@@ -20,7 +20,7 @@ namespace Proiect_Mercedes.Pages.Models
         }
 
         [BindProperty]
-        public Model Model { get; set; } = default!;
+        public Model_Car Model { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

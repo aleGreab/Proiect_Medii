@@ -25,17 +25,28 @@ namespace Proiect_Mercedes.Pages.Cars
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Car == null)
             {
                 return NotFound();
             }
 
-            var car =  await _context.Car.FirstOrDefaultAsync(m => m.ID == id);
+            var car =  await _context.Car
+                .Include(c => c.Model)
+                .Include(c => c.Motor)
+                .Include(c => c.Transmission)
+                .Include(c => c.State)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (car == null)
             {
                 return NotFound();
             }
             Car = car;
+
+            ViewData["CarModelID"] = new SelectList(_context.Set<Model_Car>(), "ID", "ModelName");
+            ViewData["CarMotorID"] = new SelectList(_context.Set<Motorization>(), "ID", "MotorType");
+            ViewData["CarTransID"] = new SelectList(_context.Set<Transmission>(), "ID", "TransmissionType");
+            ViewData["CarStateID"] = new SelectList(_context.Set<State>(), "ID", "StateType");
+                
             return Page();
         }
 
@@ -71,7 +82,7 @@ namespace Proiect_Mercedes.Pages.Cars
 
         private bool CarExists(int id)
         {
-            return _context.Car.Any(e => e.ID == id);
+            return (_context.Car?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

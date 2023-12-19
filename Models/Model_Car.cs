@@ -1,6 +1,6 @@
 ﻿namespace Proiect_Mercedes.Models
 {
-    public class Model
+    public class Model_Car
     {
         public int ID { get; set; }
         public string ModelName { get; set; }

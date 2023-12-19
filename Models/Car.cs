@@ -7,7 +7,7 @@ namespace Proiect_Mercedes.Models
         public int ID { get; set; }
         public string Photo { get; set; }
         public int? CarModelID { get; set; }
-        public Model? Model { get; set; } //leg pentru cheie straina
+        public Model_Car? Model { get; set; } //leg pentru cheie straina
         public int? CarMotorID { get; set; }
         public Motorization? Motor { get; set; }
         public int? CarTransID { get; set; }

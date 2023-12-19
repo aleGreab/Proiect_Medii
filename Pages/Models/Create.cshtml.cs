@@ -25,7 +25,7 @@ namespace Proiect_Mercedes.Pages.Models
         }
 
         [BindProperty]
-        public Model Model { get; set; } = default!;
+        public Model_Car Model { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
