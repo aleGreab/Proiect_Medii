@@ -19,5 +19,6 @@ namespace Proiect_Mercedes.Data
         public DbSet<Proiect_Mercedes.Models.Motorization> Motorization { get; set; } = default!;
         public DbSet<Proiect_Mercedes.Models.Transmission> Transmission { get; set; } = default!;
         public DbSet<Proiect_Mercedes.Models.State> State { get; set; } = default!;
+        public DbSet<Proiect_Mercedes.Models.Member> Member { get; set; } = default!;
     }
 }
