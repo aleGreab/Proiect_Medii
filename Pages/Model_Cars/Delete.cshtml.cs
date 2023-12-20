@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Mercedes.Data;
 using Proiect_Mercedes.Models;
 
-namespace Proiect_Mercedes.Pages.Models
+namespace Proiect_Mercedes.Pages.Model_Cars
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Proiect_Mercedes.Pages.Models
         }
 
         [BindProperty]
-        public Model_Car Model { get; set; } = default!;
+        public Model_Car Model_Car { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,15 +29,15 @@ namespace Proiect_Mercedes.Pages.Models
                 return NotFound();
             }
 
-            var model = await _context.Model.FirstOrDefaultAsync(m => m.ID == id);
+            var model_car = await _context.Model.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (model == null)
+            if (model_car == null)
             {
                 return NotFound();
             }
             else
             {
-                Model = model;
+                Model_Car = model_car;
             }
             return Page();
         }
@@ -49,11 +49,11 @@ namespace Proiect_Mercedes.Pages.Models
                 return NotFound();
             }
 
-            var model = await _context.Model.FindAsync(id);
-            if (model != null)
+            var model_car = await _context.Model.FindAsync(id);
+            if (model_car != null)
             {
-                Model = model;
-                _context.Model.Remove(Model);
+                Model_Car = model_car;
+                _context.Model.Remove(Model_Car);
                 await _context.SaveChangesAsync();
             }
 

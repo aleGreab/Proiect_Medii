@@ -31,7 +31,7 @@ namespace Proiect_Mercedes.Pages.Cars
             }
 
             var car =  await _context.Car
-                .Include(c => c.Model)
+               .Include(c => c.Model)
                 .Include(c => c.Motor)
                 .Include(c => c.Transmission)
                 .Include(c => c.State)
@@ -46,7 +46,6 @@ namespace Proiect_Mercedes.Pages.Cars
             ViewData["CarMotorID"] = new SelectList(_context.Set<Motorization>(), "ID", "MotorType");
             ViewData["CarTransID"] = new SelectList(_context.Set<Transmission>(), "ID", "TransmissionType");
             ViewData["CarStateID"] = new SelectList(_context.Set<State>(), "ID", "StateType");
-                
             return Page();
         }
 

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Mercedes.Data;
 using Proiect_Mercedes.Models;
 
-namespace Proiect_Mercedes.Pages.Models
+namespace Proiect_Mercedes.Pages.Model_Cars
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace Proiect_Mercedes.Pages.Models
         }
 
         [BindProperty]
-        public Model_Car Model { get; set; } = default!;
+        public Model_Car Model_Car { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,12 @@ namespace Proiect_Mercedes.Pages.Models
                 return NotFound();
             }
 
-            var model =  await _context.Model.FirstOrDefaultAsync(m => m.ID == id);
-            if (model == null)
+            var model_car =  await _context.Model.FirstOrDefaultAsync(m => m.ID == id);
+            if (model_car == null)
             {
                 return NotFound();
             }
-            Model = model;
+            Model_Car = model_car;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace Proiect_Mercedes.Pages.Models
                 return Page();
             }
 
-            _context.Attach(Model).State = EntityState.Modified;
+            _context.Attach(Model_Car).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace Proiect_Mercedes.Pages.Models
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModelExists(Model.ID))
+                if (!Model_CarExists(Model_Car.ID))
                 {
                     return NotFound();
                 }
@@ -69,7 +69,7 @@ namespace Proiect_Mercedes.Pages.Models
             return RedirectToPage("./Index");
         }
 
-        private bool ModelExists(int id)
+        private bool Model_CarExists(int id)
         {
             return _context.Model.Any(e => e.ID == id);
         }

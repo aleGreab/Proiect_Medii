@@ -1,5 +1,5 @@
 ﻿@page
-@model Proiect_Mercedes.Pages.Models.CreateModel
+@model Proiect_Mercedes.Pages.Model_Cars.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -7,16 +7,16 @@
 
 <h1>Create</h1>
 
-<h4>Model</h4>
+<h4>Model_Car</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Model.ModelName" class="control-label"></label>
-                <input asp-for="Model.ModelName" class="form-control" />
-                <span asp-validation-for="Model.ModelName" class="text-danger"></span>
+                <label asp-for="Model_Car.ModelName" class="control-label"></label>
+                <input asp-for="Model_Car.ModelName" class="form-control" />
+                <span asp-validation-for="Model_Car.ModelName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
