@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,8 @@ using Proiect_Mercedes.Models;
 
 namespace Proiect_Mercedes.Pages.Cars
 {
+    [Authorize(Roles = "Admin")]
+
     public class DeleteModel : PageModel
     {
         private readonly Proiect_Mercedes.Data.Proiect_MercedesContext _context;
@@ -29,7 +32,9 @@ namespace Proiect_Mercedes.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car.FirstOrDefaultAsync(m => m.ID == id);
+            var car = await _context.Car
+
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (car == null)
             {

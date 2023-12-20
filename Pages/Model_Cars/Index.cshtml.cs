@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Mercedes.Data;
 using Proiect_Mercedes.Models;
 
-namespace Proiect_Mercedes.Pages.Models
+namespace Proiect_Mercedes.Pages.Model_Cars
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace Proiect_Mercedes.Pages.Models
             _context = context;
         }
 
-        public IList<Model_Car> Model { get;set; } = default!;
+        public IList<Model_Car> Model_Car { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Model = await _context.Model.ToListAsync();
+            Model_Car = await _context.Model.ToListAsync();
         }
     }
 }

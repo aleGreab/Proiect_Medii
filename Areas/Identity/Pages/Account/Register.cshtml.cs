@@ -86,6 +86,19 @@ namespace Proiect_Mercedes.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            //am adaugat aici pentru a avea fieldurile necesare
+            [Required]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Required]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
+        
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -127,13 +140,25 @@ namespace Proiect_Mercedes.Areas.Identity.Pages.Account
             await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
             await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
             var result = await _userManager.CreateAsync(user, Input.Password);
-            Member.Email = Input.Email;
-            _context.Member.Add(Member);
-            await _context.SaveChangesAsync();
-
             if (result.Succeeded)
             {
+
+                //am adaugat aici pentru a transmite datele catre tabela Member
+                var member = new Member
+                {
+                  
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    Phone = Input.PhoneNumber,
+                    Email = Input.Email
+                };
+
+                _context.Member.Add(member);
+                await _context.SaveChangesAsync();
+
+
                 _logger.LogInformation("User created a new account with password.");
+                var role = await _userManager.AddToRoleAsync(user, "User");
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

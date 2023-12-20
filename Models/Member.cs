@@ -19,6 +19,5 @@ namespace Proiect_Mercedes.Models
                 return FirstName + " " + LastName;
             }
         }
-    
     }
 }

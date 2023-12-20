@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Mercedes.Data;
 using Proiect_Mercedes.Models;
 
-namespace Proiect_Mercedes.Pages.Models
+namespace Proiect_Mercedes.Pages.Model_Cars
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Proiect_Mercedes.Pages.Models
             _context = context;
         }
 
-        public Model_Car Model { get; set; } = default!;
+        public Model_Car Model_Car { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,14 +28,14 @@ namespace Proiect_Mercedes.Pages.Models
                 return NotFound();
             }
 
-            var model = await _context.Model.FirstOrDefaultAsync(m => m.ID == id);
-            if (model == null)
+            var model_car = await _context.Model.FirstOrDefaultAsync(m => m.ID == id);
+            if (model_car == null)
             {
                 return NotFound();
             }
             else
             {
-                Model = model;
+                Model_Car = model_car;
             }
             return Page();
         }

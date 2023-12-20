@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Proiect_Mercedes.Data;
 using Proiect_Mercedes.Models;
 
-namespace Proiect_Mercedes.Pages.Models
+namespace Proiect_Mercedes.Pages.Model_Cars
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace Proiect_Mercedes.Pages.Models
         }
 
         [BindProperty]
-        public Model_Car Model { get; set; } = default!;
+        public Model_Car Model_Car { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace Proiect_Mercedes.Pages.Models
                 return Page();
             }
 
-            _context.Model.Add(Model);
+            _context.Model.Add(Model_Car);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
