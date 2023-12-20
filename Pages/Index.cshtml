@@ -1,10 +1,22 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
+@if (User.IsInRole("Admin"))
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome!</h1>
+        <p><b>You are logged in as an administrator.</b></p>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        <a class="btn btn-primary" asp-page="/Cars/Index">View Cars</a> <br /><br />
+        <a class="btn btn-primary" asp-page="/Model_Cars/Index">View Models</a><br /> <br />
+        <a class="btn btn-primary" asp-page="/Motorizations/Index">View Motorizations</a> <br /><br />
+        <a class="btn btn-primary" asp-page="/Transmissions/Index">View Transmissions</a><br /><br />
+        <a class="btn btn-primary" asp-page="/States/Index">View States</a><br /><br />
+    </div>
+}
+else
+{  
+    <p> ce se intampla </p>
+}

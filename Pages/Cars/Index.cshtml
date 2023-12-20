@@ -6,10 +6,25 @@
 }
 
 <h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<form>
+    <p>
+       Filter by Model: <input type="text" name="SearchString">
+        <input type="submit" class="btn btn-primary" value="Search">
+        <br>
+        Filter by State:
+        <select name="SelectedState">
+            <option value="">Select State</option>
+            <option value="1">New</option>
+            <option value="2">Used</option>
+        </select>
+    </p>
+</form>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-page="Create">Create New</a>
+        </p>
+    }
 <table class="table">
     <thead>
         <tr>
@@ -38,35 +53,45 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Car) {
-        <tr>
-            <td>
-              <img src="@item.Photo" alt="Car Image" style="width: 300px; height: 150px;">
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model.ModelName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Motor.MotorType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Transmission.TransmissionType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State.StateType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ManufacturingYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Feature)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Car)
+        {
+            <tr>
+                <td>
+                    <img src="@item.Photo" alt="Car Image" style="width: 300px; height: 150px;">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.ModelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Motor.MotorType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Transmission.TransmissionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State.StateType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManufacturingYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Feature)
+                </td>
+                <td>
+
+                    <!--daca utilizatorul este ADMIN daor el va vedea butoanele de editare-->
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> 
+                        <a asp-page="./Details" asp-route-id="@item.ID">More Info</a> 
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    }
+                    else
+                    {
+                        <a asp-page="./Details" asp-route-id="@item.ID">More Info</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

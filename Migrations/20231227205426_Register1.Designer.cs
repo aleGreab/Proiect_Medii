@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proiect_Mercedes.Data;
 
@@ -11,9 +12,11 @@ using Proiect_Mercedes.Data;
 namespace Proiect_Mercedes.Migrations
 {
     [DbContext(typeof(Proiect_MercedesContext))]
-    partial class Proiect_MercedesContextModelSnapshot : ModelSnapshot
+    [Migration("20231227205426_Register1")]
+    partial class Register1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,9 +49,6 @@ namespace Proiect_Mercedes.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CarUserID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Feature")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,8 +70,6 @@ namespace Proiect_Mercedes.Migrations
                     b.HasIndex("CarStateID");
 
                     b.HasIndex("CarTransID");
-
-                    b.HasIndex("CarUserID");
 
                     b.ToTable("Car");
                 });
@@ -198,10 +196,6 @@ namespace Proiect_Mercedes.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Proiect_Mercedes.Models.Member", "User")
-                        .WithMany("Cars")
-                        .HasForeignKey("CarUserID");
-
                     b.Navigation("Model");
 
                     b.Navigation("Motor");
@@ -209,13 +203,6 @@ namespace Proiect_Mercedes.Migrations
                     b.Navigation("State");
 
                     b.Navigation("Transmission");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Proiect_Mercedes.Models.Member", b =>
-                {
-                    b.Navigation("Cars");
                 });
 
             modelBuilder.Entity("Proiect_Mercedes.Models.Model_Car", b =>

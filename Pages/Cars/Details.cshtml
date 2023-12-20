@@ -7,6 +7,12 @@
 
 <h1>Details</h1>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
 <div>
     <h4>Car</h4>
     <hr />
@@ -18,28 +24,28 @@
             <img src="@Model.Car.Photo" alt="Car Image" style="width: 300px; height: 150px;">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.CarModelID)
+            @Html.DisplayNameFor(model => model.Car.Model.ModelName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.CarModelID)
+            @Html.DisplayFor(model => model.Car.Model.ModelName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.CarMotorID)
+            @Html.DisplayNameFor(model => model.Car.Motor.MotorType)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.CarMotorID)
+            @Html.DisplayFor(model => model.Car.Motor.MotorType)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.CarTransID)
+            @Html.DisplayNameFor(model => model.Car.Transmission.TransmissionType)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.CarTransID)
+            @Html.DisplayFor(model => model.Car.Transmission.TransmissionType)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.CarStateID)
+            @Html.DisplayNameFor(model => model.Car.State.StateType)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.CarStateID)
+            @Html.DisplayFor(model => model.Car.State.StateType)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.ManufacturingYear)
@@ -59,3 +65,26 @@
     <a asp-page="./Edit" asp-route-id="@Model.Car.ID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
+<!-- CONTACTEAZA-NE--!>
+       <div class="container">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">
+    Contact Us
+</button>
+<div class="modal" tabindex="-1" id="contactInfoModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Contact Information</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>For more information, please contact us at <a href="mailto:cars.mercbenz@gmail.com">cars.mercbenz@gmail.com</a> or at 0264785461</b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+
+   
+

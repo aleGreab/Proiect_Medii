@@ -14,17 +14,17 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Car.Photo" class="control-label">Photo</label>
+                <label asp-for="Car.Photo" class="control-label"></label>
                 <input asp-for="Car.Photo" class="form-control" />
                 <span asp-validation-for="Car.Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Car.CarModelID" class="control-label">Model</label>
-               <select asp-for="Car.CarModelID" class="form-control" asp-items="ViewBag.CarModelID"></select>
+                <label asp-for="Car.CarModelID" class="control-label"></label>
+                <select asp-for="Car.CarModelID" class="form-control" asp-items="ViewBag.CarModelID"></select>
                 <span asp-validation-for="Car.CarModelID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Car.CarMotorID" class="control-label">Motorization</label>
+                <label asp-for="Car.CarMotorID" class="control-label"></label>
                 <select asp-for="Car.CarMotorID" class="form-control" asp-items="ViewBag.CarMotorID"></select>
                 <span asp-validation-for="Car.CarMotorID" class="text-danger"></span>
             </div>
@@ -34,20 +34,21 @@
                 <span asp-validation-for="Car.CarTransID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Car.CarStateID" class="control-label">State</label>
+                <label asp-for="Car.CarStateID" class="control-label"></label>
                 <select asp-for="Car.CarStateID" class="form-control" asp-items="ViewBag.CarStateID"></select>
                 <span asp-validation-for="Car.CarStateID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Car.ManufacturingYear" class="control-label">Year of manufacturing</label>
+                <label asp-for="Car.ManufacturingYear" class="control-label"></label>
                 <input asp-for="Car.ManufacturingYear" class="form-control" />
                 <span asp-validation-for="Car.ManufacturingYear" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Car.Feature" class="control-label">Features</label>
+                <label asp-for="Car.Feature" class="control-label"></label>
                 <input asp-for="Car.Feature" class="form-control" />
                 <span asp-validation-for="Car.Feature" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -60,5 +61,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -1,5 +1,5 @@
 ﻿@page
-@model Proiect_Mercedes.Pages.Models.IndexModel
+@model Proiect_Mercedes.Pages.Model_Cars.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,13 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Model[0].ModelName)
+                @Html.DisplayNameFor(model => model.Model_Car[0].ModelName)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Model) {
+@foreach (var item in Model.Model_Car) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ModelName)

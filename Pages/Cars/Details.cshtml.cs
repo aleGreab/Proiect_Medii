@@ -28,7 +28,12 @@ namespace Proiect_Mercedes.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car.FirstOrDefaultAsync(m => m.ID == id);
+            var car = await _context.Car
+                .Include(c => c.Model)
+                .Include(c => c.Motor)
+                .Include(c => c.Transmission)
+                .Include(c => c.State)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (car == null)
             {
                 return NotFound();

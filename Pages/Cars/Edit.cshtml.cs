@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,8 @@ using Proiect_Mercedes.Models;
 
 namespace Proiect_Mercedes.Pages.Cars
 {
+    [Authorize(Roles = "Admin")]
+
     public class EditModel : PageModel
     {
         private readonly Proiect_Mercedes.Data.Proiect_MercedesContext _context;
@@ -46,7 +49,6 @@ namespace Proiect_Mercedes.Pages.Cars
             ViewData["CarMotorID"] = new SelectList(_context.Set<Motorization>(), "ID", "MotorType");
             ViewData["CarTransID"] = new SelectList(_context.Set<Transmission>(), "ID", "TransmissionType");
             ViewData["CarStateID"] = new SelectList(_context.Set<State>(), "ID", "StateType");
-                
             return Page();
         }
 
@@ -58,6 +60,8 @@ namespace Proiect_Mercedes.Pages.Cars
             {
                 return Page();
             }
+
+
 
             _context.Attach(Car).State = EntityState.Modified;
 

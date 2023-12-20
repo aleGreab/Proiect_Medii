@@ -19,11 +19,24 @@ namespace Proiect_Mercedes.Pages.Cars
             _context = context;
         }
 
-        public IList<Car> Car { get;set; } = default!;
-
+        public IList<Car> Car { get; set; } = default!;
+        public string SearchString { get; set; }
+        public int? SelectedState { get; set; }
         public async Task OnGetAsync()
         {
-            Car = await _context.Car
+            IQueryable<Car> carIQ = from c in _context.Car
+                                    select c;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                carIQ = carIQ.Where(c => c.Model.ModelName.Contains(SearchString));
+            }
+            if (SelectedState.HasValue && SelectedState != 0)
+            {
+                carIQ = carIQ.Where(c => c.State.StateType == SelectedState.ToString());
+            }
+
+            Car = await carIQ
                 .Include(c => c.Model)
                 .Include(c => c.Motor)
                 .Include(c => c.Transmission)
