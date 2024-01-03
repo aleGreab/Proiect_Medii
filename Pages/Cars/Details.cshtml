@@ -61,6 +61,24 @@
         </dd>
     </dl>
 </div>
+
+<!-- CONTACTEAZA-NE--!>
+
+<button id="contactUsButton">Contact Us</button>
+<div id="contactInfo" style="display: none;">
+    <h2>Contact Us</h2>
+    <p>Pentru mai multe detalii, contactati-ne</p>
+    <ul>
+        <li><strong>Name:</strong> <span id="adminName">Name</span></li>
+       <li><strong>Email:</strong> <a id="adminEmail" href="#"><span id="adminEmailText">Email</span></a></li>
+       <li><strong>Phone Number:</strong> <span id="adminPhone">Phone</span></li>
+    </ul>
+</div>
+<script>
+document.getElementById('contactButton').addEventListener('click', function () {
+  document.getElementById('adminInfo').style.display = 'block';
+});
+</script>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Car.ID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
