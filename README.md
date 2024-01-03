@@ -27,3 +27,12 @@
    - am modificat in Register pentru a avea campurile First Name, Last Name, Phone Number la momentul inregistrarii + sa se actualizeze corespunzator in tabelele AspNetUsers si Member
    - am facut modificarile necesare pentru a diferentia la ce pagini are acces utilizatorul conectat ca ADMIN, si cel conectat ca USER, respectiv afisarea butoanelor de EDIT si DELETE doar pentru ADMIN (Cars)
    - creat buton pentru Contact Us, dar fara afisarea datelor adminului
+
+6. In branch 06:
+  - am adaugat bara de cautare cu filtru pentru model (pagina cars.index)
+  - butonul de create apare doar pentru admin (pagina cars.index)
+  - home-page
+    - pentru admin avem un admin-dashboard unde are panoul de control pentru a accesa mai usor CRUD-urile pentru adaugarea unei masini si caracteristicile acesteia
+    - pentru user momentan nu este nimic
+ - in pagina cars.index avem filtru pentru State( daca masina este noua/veche)
+ - am creat butonul de Contact Us in cars.details care apasat va afisa un pop-up cu informatii catre adresa de email si un numar de telefon
