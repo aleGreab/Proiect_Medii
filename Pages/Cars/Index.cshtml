@@ -6,16 +6,16 @@
 }
 
 <h1>Index</h1>
-<form>
+<form method="post">
     <p>
-       Filter by Model: <input type="text" name="SearchString">
+        Filter by Model: <input asp-for="SearchString" />
         <input type="submit" class="btn btn-primary" value="Search">
         <br>
         Filter by State:
-        <select name="SelectedState">
+        <select asp-for="SelectedState">
             <option value="">Select State</option>
-            <option value="1">New</option>
-            <option value="2">Used</option>
+            <option value="New">New</option>
+            <option value="Used">Used</option>
         </select>
     </p>
 </form>
@@ -23,8 +23,8 @@
 {
     <p>
         <a asp-page="Create">Create New</a>
-        </p>
-    }
+    </p>
+}
 <table class="table">
     <thead>
         <tr>

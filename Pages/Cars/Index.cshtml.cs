@@ -19,10 +19,26 @@ namespace Proiect_Mercedes.Pages.Cars
             _context = context;
         }
 
-        public IList<Car> Car { get; set; } = default!;
+        [BindProperty]
+        public IList<Car> Car { get; set; }
+
+        [BindProperty]
         public string SearchString { get; set; }
-        public int? SelectedState { get; set; }
+
+        [BindProperty]
+        public string SelectedState { get; set; }
+
         public async Task OnGetAsync()
+        {
+            Car = await _context.Car
+                .Include(c => c.Model)
+                .Include(c => c.Motor)
+                .Include(c => c.Transmission)
+                .Include(c => c.State)
+                .ToListAsync();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
         {
             IQueryable<Car> carIQ = from c in _context.Car
                                     select c;
@@ -31,9 +47,9 @@ namespace Proiect_Mercedes.Pages.Cars
             {
                 carIQ = carIQ.Where(c => c.Model.ModelName.Contains(SearchString));
             }
-            if (SelectedState.HasValue && SelectedState != 0)
+            if (!String.IsNullOrEmpty(SelectedState))
             {
-                carIQ = carIQ.Where(c => c.State.StateType == SelectedState.ToString());
+                carIQ = carIQ.Where(c => c.State.StateType == SelectedState);
             }
 
             Car = await carIQ
@@ -42,6 +58,8 @@ namespace Proiect_Mercedes.Pages.Cars
                 .Include(c => c.Transmission)
                 .Include(c => c.State)
                 .ToListAsync();
+
+            return Page();
         }
     }
 }
