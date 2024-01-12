@@ -37,5 +37,5 @@
  - in pagina cars.index avem filtru pentru State( daca masina este noua/veche)
  - am creat butonul de Contact Us in cars.details care apasat va afisa un pop-up cu informatii catre adresa de email si un numar de telefon
 
-7. In branch 07:
-  - am reparat bara de cautare cu filtru, si filtrul pentru State
+7. In branch 07 & 08:
+  - am remediat erorile din aplicatie
