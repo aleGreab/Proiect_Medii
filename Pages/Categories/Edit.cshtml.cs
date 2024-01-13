@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,10 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Mercedes.Data;
 using Proiect_Mercedes.Models;
 
-namespace Proiect_Mercedes.Pages.Cars
+namespace Proiect_Mercedes.Pages.Categories
 {
-    [Authorize(Roles = "Admin")]
-
     public class EditModel : PageModel
     {
         private readonly Proiect_Mercedes.Data.Proiect_MercedesContext _context;
@@ -24,32 +21,21 @@ namespace Proiect_Mercedes.Pages.Cars
         }
 
         [BindProperty]
-        public Car Car { get; set; } = default!;
+        public Category Category { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Car == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var car =  await _context.Car
-                .Include(c => c.Category)
-                .Include(c => c.Model)
-                .Include(c => c.Motor)
-                .Include(c => c.Transmission)
-                .Include(c => c.State)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (car == null)
+            var category =  await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
+            if (category == null)
             {
                 return NotFound();
             }
-            Car = car;
-            ViewData["CarCategoryID"] = new SelectList(_context.Set<Category>(), "ID", "CategoryType");
-            ViewData["CarModelID"] = new SelectList(_context.Set<Model_Car>(), "ID", "ModelName");
-            ViewData["CarMotorID"] = new SelectList(_context.Set<Motorization>(), "ID", "MotorType");
-            ViewData["CarTransID"] = new SelectList(_context.Set<Transmission>(), "ID", "TransmissionType");
-            ViewData["CarStateID"] = new SelectList(_context.Set<State>(), "ID", "StateType");
+            Category = category;
             return Page();
         }
 
@@ -62,9 +48,7 @@ namespace Proiect_Mercedes.Pages.Cars
                 return Page();
             }
 
-
-
-            _context.Attach(Car).State = EntityState.Modified;
+            _context.Attach(Category).State = EntityState.Modified;
 
             try
             {
@@ -72,7 +56,7 @@ namespace Proiect_Mercedes.Pages.Cars
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CarExists(Car.ID))
+                if (!CategoryExists(Category.ID))
                 {
                     return NotFound();
                 }
@@ -85,9 +69,9 @@ namespace Proiect_Mercedes.Pages.Cars
             return RedirectToPage("./Index");
         }
 
-        private bool CarExists(int id)
+        private bool CategoryExists(int id)
         {
-            return (_context.Car?.Any(e => e.ID == id)).GetValueOrDefault();
+            return _context.Category.Any(e => e.ID == id);
         }
     }
 }

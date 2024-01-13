@@ -27,10 +27,13 @@ namespace Proiect_Mercedes.Pages.Cars
 
         [BindProperty]
         public string SelectedState { get; set; }
+        [BindProperty]
+        public string SelectedCategory { get; set; }
 
         public async Task OnGetAsync()
         {
             Car = await _context.Car
+                .Include(c => c.Category)
                 .Include(c => c.Model)
                 .Include(c => c.Motor)
                 .Include(c => c.Transmission)
@@ -51,8 +54,13 @@ namespace Proiect_Mercedes.Pages.Cars
             {
                 carIQ = carIQ.Where(c => c.State.StateType == SelectedState);
             }
+            if (!String.IsNullOrEmpty(SelectedCategory))
+            {
+                carIQ = carIQ.Where(c => c.Category.CategoryType == SelectedCategory);
+            }
 
             Car = await carIQ
+                .Include(c => c.Category)
                 .Include(c => c.Model)
                 .Include(c => c.Motor)
                 .Include(c => c.Transmission)

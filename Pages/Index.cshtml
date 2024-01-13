@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Home";
 }
+
 @if (User.IsInRole("Admin"))
 {
     <div class="text-center">
-        <h1 class="display-4">Welcome!</h1>
+        <h1 class="display-4">Welcome to VAG AutoCenter!</h1>
         <p><b>You are logged in as an administrator.</b></p>
 
         <a class="btn btn-primary" asp-page="/Cars/Index">View Cars</a> <br /><br />
@@ -14,9 +15,46 @@
         <a class="btn btn-primary" asp-page="/Motorizations/Index">View Motorizations</a> <br /><br />
         <a class="btn btn-primary" asp-page="/Transmissions/Index">View Transmissions</a><br /><br />
         <a class="btn btn-primary" asp-page="/States/Index">View States</a><br /><br />
+        <a class="btn btn-primary" asp-page="/Categories/Index">View Categories</a><br /><br />
     </div>
 }
 else
-{  
-    <p> ce se intampla </p>
+{
+    <div class="container">
+        <h1 class="display-4">Welcome to VAG AutoCenter</h1>
+        <p>Your Trusted Source for Volkswagen, Audi, and Other VAG Group Brand Cars, New and Second-Hand, of the Highest Quality.</p>
+
+        <h2>
+            About Us:
+        </h2>
+        <p>At VAG AutoCenter, we are dedicated to bringing you the authentic experience of the Volkswagen and Audi brands. With a long tradition in the automotive industry and a team of professionals passionate about cars, we strive to offer you the best selection of VAG group cars, whether you're looking for a new or second-hand model.</p>
+
+        <h2>What We Offer:</h2>
+        <ul>
+            <li><strong>New Volkswagen and Audi Cars: </strong> We have a wide range of new VAG group models that will delight your senses and provide the driving experience you deserve. From efficient compact models to spacious SUVs and sporty models, we have a diverse selection for every taste.</li>
+            <li><strong>Certified Second-Hand Cars:</strong> For those who prefer a more affordable option, we offer a rigorous selection of certified second-hand VAG group cars. These vehicles have undergone detailed inspections and checks to ensure they are in perfect working order</li>
+        </ul>
+
+        <p>Experience the innovation and quality of a VAG group vehicle at VAG AutoCenter. We invite you to visit our showroom or contact us to learn more about our offer and to schedule a test drive. Choose performance, choose VAG AutoCenter.</p>
+    </div>
+    <div class="container">
+        <h2>Our Car Gallery</h2>
+        <div class="scrolling-wrapper">
+            @foreach (var car in Model.Cars)
+            {
+                <div class="card">
+                    <img class="card-img" src="@car.Photo" alt="@car.Model?.ModelName">
+                    <div class="card-body">
+                        <p class="card-title"><strong>@car.Model?.ModelName</strong></p>
+                        <strong>Category:</strong> @car.Category?.CategoryType <br>
+                        <strong>Motorization:</strong> @car.Motor?.MotorType <br>
+                        <strong>Transmission:</strong> @car.Transmission?.TransmissionType <br>
+                        <strong>State:</strong> @car.State?.StateType <br>
+                        <strong>Manufacturing Year:</strong> @car.ManufacturingYear <br>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
 }

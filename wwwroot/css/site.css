@@ -26,4 +26,35 @@ body {
 .hidden-info {
     visibility: hidden;
 }
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
 
+.card {
+    display: inline-block;
+    width: 250px; /* Fixed width */
+    height: 370px; /* Fixed height */
+    margin-right: 10px;
+    vertical-align: top;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Optional: adds a shadow for depth */
+}
+
+.card-img {
+    width: 100%;
+    height: 200px; /* Fixed height for the image */
+    object-fit: cover; /* Ensures the image covers the area nicely */
+}
+
+.card-body {
+    padding: 10px;
+    height: 150px; /* Remaining height for card body */
+    overflow: hidden; /* Ensures content doesn't overflow */
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1rem; /* Adjust font size as needed */
+    bold: true;
+}

@@ -2,10 +2,10 @@
 @model Proiect_Mercedes.Pages.Cars.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details of Car";
 }
 
-<h1>Details</h1>
+<h1>Details of Car</h1>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -13,55 +13,62 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
+
 <div>
-    <h4>Car</h4>
     <hr />
     <dl class="row">
+        
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Photo)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="@Model.Car.Photo" alt="Car Image" style="width: 300px; height: 150px;">
+            </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Photo)
-        </dt>
+            @Html.DisplayNameFor(model => model.Car.Category.CategoryType)
         <dd class="col-sm-10">
-            <img src="@Model.Car.Photo" alt="Car Image" style="width: 300px; height: 150px;">
+            @Html.DisplayFor(model => model.Car.Category.CategoryType)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Model.ModelName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Model.ModelName)
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Model.ModelName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.Model.ModelName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Motor.MotorType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.Motor.MotorType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Transmission.TransmissionType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.Transmission.TransmissionType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.State.StateType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.State.StateType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.ManufacturingYear)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.ManufacturingYear)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Feature)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.Feature)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Motor.MotorType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Motor.MotorType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Transmission.TransmissionType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Transmission.TransmissionType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.State.StateType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.State.StateType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.ManufacturingYear)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.ManufacturingYear)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Feature)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Feature)
-        </dd>
+        
     </dl>
 </div>
-
+<div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Car.ID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
@@ -79,13 +86,11 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p><b>For more information, please contact us at <a href="mailto:cars.mercbenz@gmail.com">cars.mercbenz@gmail.com</a> or at 0264785461</b></p>
+                            <p><b>For more information, please contact us at <a href="mailto:cars.vagautocenter@gmail.com">cars.vagautocenter@gmail.com</a> or at 0264785461</b></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-
-   
 

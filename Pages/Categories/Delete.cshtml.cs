@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Proiect_Mercedes.Data;
 using Proiect_Mercedes.Models;
 
-namespace Proiect_Mercedes.Pages.Cars
+namespace Proiect_Mercedes.Pages.Categories
 {
-    [Authorize(Roles = "Admin")]
-
     public class DeleteModel : PageModel
     {
         private readonly Proiect_Mercedes.Data.Proiect_MercedesContext _context;
@@ -23,7 +20,7 @@ namespace Proiect_Mercedes.Pages.Cars
         }
 
         [BindProperty]
-        public Car Car { get; set; } = default!;
+        public Category Category { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,23 +29,15 @@ namespace Proiect_Mercedes.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car
+            var category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
 
-                .Include(c => c.Category)
-                .Include(c => c.Model)
-                .Include(c => c.Motor)
-                .Include(c => c.Transmission)
-                .Include(c => c.State)
-                .FirstOrDefaultAsync(m => m.ID == id);
-
-
-            if (car == null)
+            if (category == null)
             {
                 return NotFound();
             }
             else
             {
-                Car = car;
+                Category = category;
             }
             return Page();
         }
@@ -60,11 +49,11 @@ namespace Proiect_Mercedes.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car.FindAsync(id);
-            if (car != null)
+            var category = await _context.Category.FindAsync(id);
+            if (category != null)
             {
-                Car = car;
-                _context.Car.Remove(Car);
+                Category = category;
+                _context.Category.Remove(Category);
                 await _context.SaveChangesAsync();
             }
 

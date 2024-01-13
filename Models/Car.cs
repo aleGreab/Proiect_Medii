@@ -14,6 +14,13 @@ namespace Proiect_Mercedes.Models
 
         [Required]
         public int? CarModelID { get; set; } //leg pentru cheie straina
+        [Required]
+        public int? CarCategoryID { get; set; }
+
+        [ForeignKey("CarCategoryID")]
+
+        public Category? Category { get; set; }
+
 
         [ForeignKey("CarModelID")]
         
@@ -46,6 +53,6 @@ namespace Proiect_Mercedes.Models
         [DisplayName("Features")]
         public string Feature { get; set; }
 
-       
+
     }
 }

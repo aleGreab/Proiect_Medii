@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect_Mercedes.Data;
 using Proiect_Mercedes.Models;
 
-namespace Proiect_Mercedes.Pages.Cars
+namespace Proiect_Mercedes.Pages.Categories
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Proiect_Mercedes.Pages.Cars
             _context = context;
         }
 
-        public Car Car { get; set; }
+        public Category Category { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,21 +28,16 @@ namespace Proiect_Mercedes.Pages.Cars
                 return NotFound();
             }
 
-            Car = await _context.Car
-                .Include(c => c.Category)
-                .Include(c => c.Model)
-                .Include(c => c.Motor)
-                .Include(c => c.Transmission)
-                .Include(c => c.State)
-                .FirstOrDefaultAsync(m => m.ID == id);
-
-            if (Car == null)
+            var category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
+            if (category == null)
             {
                 return NotFound();
             }
+            else
+            {
+                Category = category;
+            }
             return Page();
         }
-
-          
     }
 }

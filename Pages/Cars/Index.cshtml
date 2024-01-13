@@ -2,10 +2,10 @@
 @model Proiect_Mercedes.Pages.Cars.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List of Cars";
 }
 
-<h1>Index</h1>
+<h1>Our Cars</h1>
 <form method="post">
     <p>
         Filter by Model: <input asp-for="SearchString" />
@@ -17,6 +17,14 @@
             <option value="New">New</option>
             <option value="Used">Used</option>
         </select>
+         Filter by Category:
+        <select asp-for="SelectedCategory">
+            <option value="">Select Category</option>
+            <option value="Family">Family</option>
+            <option value="Sport">Sport</option>
+            <option value="Luxury">Luxury</option>
+        </select>
+        <br>
     </p>
 </form>
 @if (User.IsInRole("Admin"))
@@ -30,6 +38,9 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Category.CategoryType)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Model.ModelName)
@@ -61,6 +72,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Model.ModelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryType)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Motor.MotorType)
