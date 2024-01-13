@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
 using Proiect_Mercedes.Models;
 
 namespace Proiect_Mercedes.Data
@@ -20,5 +21,6 @@ namespace Proiect_Mercedes.Data
         public DbSet<Proiect_Mercedes.Models.Transmission> Transmission { get; set; } = default!;
         public DbSet<Proiect_Mercedes.Models.State> State { get; set; } = default!;
         public DbSet<Proiect_Mercedes.Models.Member> Member { get; set; } = default!;
+        public DbSet<Proiect_Mercedes.Models.Wishlist> Wishlist { get; set; } = default!;
     }
 }

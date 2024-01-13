@@ -12,77 +12,61 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-
-<div>
-    <h4>Car</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Photo)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@Model.Car.Photo" alt="Car Image" style="width: 300px; height: 150px;">
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Model.ModelName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Model.ModelName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Motor.MotorType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Motor.MotorType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Transmission.TransmissionType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Transmission.TransmissionType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.State.StateType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.State.StateType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.ManufacturingYear)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.ManufacturingYear)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Feature)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Feature)
-        </dd>
-    </dl>
-</div>
-
-<!-- CONTACTEAZA-NE--!>
-
-<button id="contactUsButton">Contact Us</button>
-<div id="contactInfo" style="display: none;">
-    <h2>Contact Us</h2>
-    <p>Pentru mai multe detalii, contactati-ne</p>
-    <ul>
-        <li><strong>Name:</strong> <span id="adminName">Name</span></li>
-       <li><strong>Email:</strong> <a id="adminEmail" href="#"><span id="adminEmailText">Email</span></a></li>
-       <li><strong>Phone Number:</strong> <span id="adminPhone">Phone</span></li>
-    </ul>
-</div>
-<script>
-document.getElementById('contactButton').addEventListener('click', function () {
-  document.getElementById('adminInfo').style.display = 'block';
-});
-</script>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Car.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+@if (Model.Car != null)
+{
+    <div>
+        <h4>Car</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Photo)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="@Model.Car.Photo" alt="Car Image" style="width: 300px; height: 150px;">
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Model.ModelName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.Model.ModelName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Motor.MotorType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.Motor.MotorType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Transmission.TransmissionType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.Transmission.TransmissionType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.State.StateType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.State.StateType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.ManufacturingYear)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.ManufacturingYear)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.Feature)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.Feature)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.Car.ID">Edit</a> |
+        <a asp-page="./Index">Back to List</a>
+    </div>
+}
 <!-- CONTACTEAZA-NE--!>
        <div class="container">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactInfoModal">
@@ -103,6 +87,3 @@ document.getElementById('contactButton').addEventListener('click', function () {
                     </div>
                 </div>
             </div>
-
-   
-
