@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Home";
 }
+
 @if (User.IsInRole("Admin"))
 {
     <div class="text-center">
@@ -17,6 +18,23 @@
     </div>
 }
 else
-{  
-    <p> ce se intampla </p>
+{
+    <div class="container">
+        <h1>Bine ați venit la Mercedes-Benz AutoCenter</h1>
+        <p>Sursa dumneavoastră de încredere pentru achiziționarea mașinilor Mercedes-Benz noi și second-hand de cea mai înaltă calitate.</p>
+
+        <h2>Despre Noi:</h2>
+        <p>La Mercedes-Benz AutoCenter, suntem dedicați să vă aducem experiența Mercedes-Benz autentică. Cu o tradiție îndelungată în industria auto și o echipă de profesioniști pasionați de automobile, ne străduim să vă oferim cea mai bună selecție de mașini Mercedes-Benz, fie că sunteți în căutarea unui model nou sau second-hand.</p>
+
+        <h2>Ce Vă Oferim:</h2>
+        <ul>
+            <li><strong>Mașini Noi Mercedes-Benz:</strong> Avem o gamă impresionantă de modele Mercedes-Benz noi care vă vor încânta simțurile și vă vor oferi experiența de conducere pe care o meritați. De la elegantele sedanuri la SUV-urile puternice și coupe-urile sportive, avem toate opțiunile acoperite.</li>
+            <li><strong>Mașini Second-hand Certificate:</strong> Pentru cei care preferă o opțiune mai accesibilă, oferim o selecție riguroasă de mașini second-hand certificate Mercedes-Benz. Aceste vehicule au trecut prin inspecții și verificări detaliate pentru a vă asigura că sunt în stare perfectă de funcționare.</li>
+            <li><strong>Finanțare Personalizată:</strong> Echipa noastră de experți în finanțe vă va ajuta să găsiți soluția potrivită pentru bugetul dumneavoastră. Cu opțiuni de leasing și împrumut, vă facem mai aproape de visul dumneavoastră de a conduce un Mercedes-Benz.</li>
+            <li><strong>Service și Piese Originale:</strong> După ce v-ați achiziționat mașina, suntem aici pentru a vă oferi servicii de mentenanță și reparații de încredere, folosind doar piese originale Mercedes-Benz. Ne străduim să menținem mașina dumneavoastră în cea mai bună formă posibilă.</li>
+            <li><strong>Echipă Experiență:</strong> La Mercedes-Benz AutoCenter, suntem pasionați de automobile și suntem aici pentru a vă ghida în fiecare etapă a achiziției dumneavoastră. Echipa noastră este gata să vă ofere răspunsuri la întrebările dumneavoastră și să vă asiste în procesul de cumpărare.</li>
+        </ul>
+
+        <p>Experimentați luxul și performanța unui Mercedes-Benz la Mercedes-Benz AutoCenter. Vă invităm să ne vizitați showroom-ul nostru sau să ne contactați pentru a afla mai multe despre oferta noastră și pentru a programa un test drive. Alegeți excelența, alegeți Mercedes-Benz AutoCenter.</p>
+    </div>
 }

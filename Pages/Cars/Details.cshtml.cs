@@ -19,7 +19,7 @@ namespace Proiect_Mercedes.Pages.Cars
             _context = context;
         }
 
-        public Car Car { get; set; } = default!;
+        public Car Car { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,21 +28,20 @@ namespace Proiect_Mercedes.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car
+            Car = await _context.Car
                 .Include(c => c.Model)
                 .Include(c => c.Motor)
                 .Include(c => c.Transmission)
                 .Include(c => c.State)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (car == null)
+
+            if (Car == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Car = car;
-            }
             return Page();
         }
+
+          
     }
 }

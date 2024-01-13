@@ -46,6 +46,6 @@ namespace Proiect_Mercedes.Models
         [DisplayName("Features")]
         public string Feature { get; set; }
 
-       
+
     }
 }

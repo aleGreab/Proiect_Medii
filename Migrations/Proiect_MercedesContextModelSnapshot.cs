@@ -46,9 +46,6 @@ namespace Proiect_Mercedes.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CarUserID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Feature")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,8 +67,6 @@ namespace Proiect_Mercedes.Migrations
                     b.HasIndex("CarStateID");
 
                     b.HasIndex("CarTransID");
-
-                    b.HasIndex("CarUserID");
 
                     b.ToTable("Car");
                 });
@@ -172,6 +167,60 @@ namespace Proiect_Mercedes.Migrations
                     b.ToTable("Transmission");
                 });
 
+            modelBuilder.Entity("Proiect_Mercedes.Models.WishlistCar", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CarID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CarModelID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CarMotorID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CarStateID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CarTransID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Feature")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ManufacturingYear")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CarID");
+
+                    b.HasIndex("CarModelID");
+
+                    b.HasIndex("CarMotorID");
+
+                    b.HasIndex("CarStateID");
+
+                    b.HasIndex("CarTransID");
+
+                    b.ToTable("WishlistCar");
+                });
+
             modelBuilder.Entity("Proiect_Mercedes.Models.Car", b =>
                 {
                     b.HasOne("Proiect_Mercedes.Models.Model_Car", "Model")
@@ -198,9 +247,48 @@ namespace Proiect_Mercedes.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Proiect_Mercedes.Models.Member", "User")
-                        .WithMany("Cars")
-                        .HasForeignKey("CarUserID");
+                    b.Navigation("Model");
+
+                    b.Navigation("Motor");
+
+                    b.Navigation("State");
+
+                    b.Navigation("Transmission");
+                });
+
+            modelBuilder.Entity("Proiect_Mercedes.Models.WishlistCar", b =>
+                {
+                    b.HasOne("Proiect_Mercedes.Models.Car", "Car")
+                        .WithMany("WishlistCars")
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proiect_Mercedes.Models.Model_Car", "Model")
+                        .WithMany()
+                        .HasForeignKey("CarModelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proiect_Mercedes.Models.Motorization", "Motor")
+                        .WithMany()
+                        .HasForeignKey("CarMotorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proiect_Mercedes.Models.State", "State")
+                        .WithMany()
+                        .HasForeignKey("CarStateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proiect_Mercedes.Models.Transmission", "Transmission")
+                        .WithMany()
+                        .HasForeignKey("CarTransID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
 
                     b.Navigation("Model");
 
@@ -209,13 +297,11 @@ namespace Proiect_Mercedes.Migrations
                     b.Navigation("State");
 
                     b.Navigation("Transmission");
-
-                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Proiect_Mercedes.Models.Member", b =>
+            modelBuilder.Entity("Proiect_Mercedes.Models.Car", b =>
                 {
-                    b.Navigation("Cars");
+                    b.Navigation("WishlistCars");
                 });
 
             modelBuilder.Entity("Proiect_Mercedes.Models.Model_Car", b =>
