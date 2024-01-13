@@ -9,7 +9,7 @@ namespace Proiect_Mercedes.Data
 {
     public class Proiect_MercedesContext : DbContext
     {
-        public Proiect_MercedesContext (DbContextOptions<Proiect_MercedesContext> options)
+        public Proiect_MercedesContext(DbContextOptions<Proiect_MercedesContext> options)
             : base(options)
         {
         }
@@ -20,5 +20,6 @@ namespace Proiect_Mercedes.Data
         public DbSet<Proiect_Mercedes.Models.Transmission> Transmission { get; set; } = default!;
         public DbSet<Proiect_Mercedes.Models.State> State { get; set; } = default!;
         public DbSet<Proiect_Mercedes.Models.Member> Member { get; set; } = default!;
+
     }
 }

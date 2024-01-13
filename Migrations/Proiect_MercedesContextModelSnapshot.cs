@@ -22,6 +22,58 @@ namespace Proiect_Mercedes.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUser");
+                });
+
             modelBuilder.Entity("Proiect_Mercedes.Models.Car", b =>
                 {
                     b.Property<int>("ID")
@@ -46,9 +98,6 @@ namespace Proiect_Mercedes.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CarUserID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Feature")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,8 +119,6 @@ namespace Proiect_Mercedes.Migrations
                     b.HasIndex("CarStateID");
 
                     b.HasIndex("CarTransID");
-
-                    b.HasIndex("CarUserID");
 
                     b.ToTable("Car");
                 });
@@ -172,6 +219,36 @@ namespace Proiect_Mercedes.Migrations
                     b.ToTable("Transmission");
                 });
 
+            modelBuilder.Entity("Proiect_Mercedes.Models.Wishlist", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CarID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CarID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Wishlists");
+                });
+
             modelBuilder.Entity("Proiect_Mercedes.Models.Car", b =>
                 {
                     b.HasOne("Proiect_Mercedes.Models.Model_Car", "Model")
@@ -198,10 +275,6 @@ namespace Proiect_Mercedes.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Proiect_Mercedes.Models.Member", "User")
-                        .WithMany("Cars")
-                        .HasForeignKey("CarUserID");
-
                     b.Navigation("Model");
 
                     b.Navigation("Motor");
@@ -209,13 +282,30 @@ namespace Proiect_Mercedes.Migrations
                     b.Navigation("State");
 
                     b.Navigation("Transmission");
+                });
+
+            modelBuilder.Entity("Proiect_Mercedes.Models.Wishlist", b =>
+                {
+                    b.HasOne("Proiect_Mercedes.Models.Car", "Car")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Proiect_Mercedes.Models.Member", b =>
+            modelBuilder.Entity("Proiect_Mercedes.Models.Car", b =>
                 {
-                    b.Navigation("Cars");
+                    b.Navigation("Wishlists");
                 });
 
             modelBuilder.Entity("Proiect_Mercedes.Models.Model_Car", b =>
