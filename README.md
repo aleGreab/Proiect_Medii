@@ -37,5 +37,4 @@
  - in pagina cars.index avem filtru pentru State( daca masina este noua/veche)
  - am creat butonul de Contact Us in cars.details care apasat va afisa un pop-up cu informatii catre adresa de email si un numar de telefon
 
-7. In branch 07 & 08:
-  - am remediat erorile din aplicatie
+În restul branchurilor au fost corectate erorile survenite pentru filtre, adăugarea mai multor mașini și implicit adăugarea unei coloane noi. Pe viitor se va configura ca și funcționalitatea de Wishlist să funcționeze momentan a fost creat doar ca concept.
